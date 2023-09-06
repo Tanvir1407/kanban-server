@@ -1,0 +1,26 @@
+{
+  "name": "kanban-server",
+  "version": "1.0.0",
+  "description": "This is kanban server ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/index.js"
+  },
+  "author": "Tanvir",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongodb": "^6.0.0",
+    "nodemon": "^3.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tanvir1407/kanban-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Tanvir1407/kanban-server/issues"
+  },
+  "homepage": "https://github.com/Tanvir1407/kanban-server#readme"
+}
