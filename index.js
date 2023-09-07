@@ -24,7 +24,7 @@ const client = new MongoClient(uri, {
 
 app.get("/", async (req, res) => {
       // const result = await dataCollection.find({}).toArray()
-      return res.json({name: "Tanvir"})
+      return res.send({name: "Tanvir"})
     }); 
 // async function run() {
 //   try {
