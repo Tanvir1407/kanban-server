@@ -22,14 +22,21 @@ const client = new MongoClient(uri, {
   }
 });
 
-app.get("/", async (req, res) => {
+
+
+client.connect();
+const dataCollection = client.db("kanban").collection("data");
+
+  app.get("/", async (req, res) => {
       const result = await dataCollection.find({}).toArray()
       return res.send(result)
-    }); 
+  }); 
+    
+
+
+
 // async function run() {
 //   try {
-//     await client.connect();
-//     const dataCollection = await client.db("kanban").collection("data");
 
 //     app.get("/", async (req, res) => {
 //       // const result = await dataCollection.find({}).toArray()
