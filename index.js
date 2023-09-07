@@ -6,9 +6,7 @@ const app = express();
 const port = process.env.PORT || 5500;
 
 app.use(cors({
-  origin:["*"],
-  methods:["GET","OPTIONS","DELETE","POST","PUT"],
-  credentials: true
+  origin:"https://kanban-client-psi.vercel.app"
 }))
 app.use(express.json());
 
