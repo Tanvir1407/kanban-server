@@ -22,68 +22,71 @@ const client = new MongoClient(uri, {
   }
 });
 
- 
-async function run() {
-  try {
-    await client.connect();
-    const dataCollection = await client.db("kanban").collection("data");
+app.get("/", async (req, res) => {
+      // const result = await dataCollection.find({}).toArray()
+      return res.json({name: "Tanvir"})
+    }); 
+// async function run() {
+//   try {
+//     await client.connect();
+//     const dataCollection = await client.db("kanban").collection("data");
 
-    app.get("/", async (req, res) => {
-      const result = await dataCollection.find({}).toArray()
-      return res.send(result)
-    });
+//     app.get("/", async (req, res) => {
+//       // const result = await dataCollection.find({}).toArray()
+//       return res.json({name: "Tanvir"})
+//     });
 
-    app.post("/add", async (req, res) => {
-      const updateTask = await dataCollection.updateOne(
-        { "name": "To Do" },
-        {
-          $push: {
-          "items": req.body
-        }}
-      )
-      res.send(updateTask)
-    })
+//     app.post("/add", async (req, res) => {
+//       const updateTask = await dataCollection.updateOne(
+//         { "name": "To Do" },
+//         {
+//           $push: {
+//           "items": req.body
+//         }}
+//       )
+//       res.send(updateTask)
+//     })
 
-    app.post("/update", async (req,res) => {
-      dataCollection.deleteMany({})
-      const result = await dataCollection.insertMany(req.body)
-      res.send(result)
-    })
+//     app.post("/update", async (req,res) => {
+//       dataCollection.deleteMany({})
+//       const result = await dataCollection.insertMany(req.body)
+//       res.send(result)
+//     })
 
-    app.put("/edititem", async (req, res) => {
-      const { groupId, itemId, name, desc } = req.body
-      const result = dataCollection.updateOne(
-        { "_id": groupId, "items.id": itemId },
-        {
-          $set: {
-            "items.$.name": name,
-            "items.$.desc": desc
-          }
-        }
-      )
-      res.send(result)
-    })
+//     app.put("/edititem", async (req, res) => {
+//       const { groupId, itemId, name, desc } = req.body
+//       const result = dataCollection.updateOne(
+//         { "_id": groupId, "items.id": itemId },
+//         {
+//           $set: {
+//             "items.$.name": name,
+//             "items.$.desc": desc
+//           }
+//         }
+//       )
+//       res.send(result)
+//     })
 
-    app.delete("/removeItem", async (req, res) => {
-      const {groupName, itemId } = req.body;
-      const deleteTask = await dataCollection.updateOne(
-        { "name":groupName},
-        {
-          $pull: {
-            "items": {
-              "id":itemId
-            }
-          }
-        }
-      )
-      res.send(deleteTask)
-    })
+//     app.delete("/removeItem", async (req, res) => {
+//       const {groupName, itemId } = req.body;
+//       const deleteTask = await dataCollection.updateOne(
+//         { "name":groupName},
+//         {
+//           $pull: {
+//             "items": {
+//               "id":itemId
+//             }
+//           }
+//         }
+//       )
+//       res.send(deleteTask)
+//     })
 
 
-  } finally {
-  }
-}
-run().catch(console.dir);
+//   } finally {
+//   }
+// }
+// run().catch(console.dir);
 
 
 app.listen(port)
