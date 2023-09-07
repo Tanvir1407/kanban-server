@@ -5,7 +5,11 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const app = express();
 const port = process.env.PORT || 5500;
 
-app.use(cors())
+app.use(cors({
+  origin:["https://kanban-client-psi.vercel.app/"],
+  methods:["POST","GET"],
+  credentials: true
+}))
 app.use(express.json());
 
 const uri = "mongodb+srv://kanban:tanvir14@cluster0.sgjbv3e.mongodb.net/?retryWrites=true&w=majority";
