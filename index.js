@@ -44,6 +44,7 @@ app.post("/add", async (req, res) => {
 });
 
 app.post("/update", async (req, res) => {
+  dataCollection.deleteMany({});
   const result = await dataCollection.insertMany(req.body);
   res.send(result);
 });
